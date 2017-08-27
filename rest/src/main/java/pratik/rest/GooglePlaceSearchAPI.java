@@ -3,10 +3,16 @@ package pratik.rest;
 import static com.jayway.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
+import org.testng.annotations.Test;
+
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.http.ContentType;
+import com.jayway.restassured.path.json.JsonPath;
+import com.jayway.restassured.response.Response;
 
 public class GooglePlaceSearchAPI {
+  public static Response responseApi;
+  public static JsonPath jsonPath;
 
   public  void getRequestPlaceSearch()
   {
@@ -22,12 +28,13 @@ public class GooglePlaceSearchAPI {
     body("results[0].name",equalTo("Hotel Indu"));
 
   }
-  public String postRequestPlaceSearch()
+  @Test
+  public void postRequestPlaceSearch()
   {
 
     RestAssured.baseURI="https://maps.googleapis.com"; 
 
-    String placeId= given().queryParam("key", "AIzaSyBD13yiw9fOHTS5jto3tkiuorfYmzZAO6I").
+      responseApi= given().queryParam("key", "AIzaSyBD13yiw9fOHTS5jto3tkiuorfYmzZAO6I").
         body("{"+
             "\"location\": {"+ 
             "\"lat\": 20.661636,"+
@@ -40,19 +47,24 @@ public class GooglePlaceSearchAPI {
             "\"types\": [\"shoe_store\"],"+
             "\"website\": \"http://www.google.com.au/\","+
             "\"language\": \"en-AU\""+
-            "} ").when().post("https://maps.googleapis.com/maps/api/place/add/json").body().jsonPath().getString("place_id");
-     
+            "} ").when().post("https://maps.googleapis.com/maps/api/place/add/json")
+        .then().assertThat().statusCode(200).and().contentType(ContentType.JSON).and()
+        .body("status", equalTo("OK")).extract().response();
 
-    return placeId;
+    String responseString=responseApi.asString();
+    System.out.println(responseString);
 
+      jsonPath=new JsonPath(responseString);
+    System.out.println(jsonPath.get("place_id"));
   } 
-
+  @Test
   public void deleteRequestPlaceSearch()  
-  {  	 
+  {
+    postRequestPlaceSearch();
     RestAssured.baseURI="https://maps.googleapis.com"; 
     given().
     queryParam("key", "AIzaSyBD13yiw9fOHTS5jto3tkiuorfYmzZAO6I").
-    body("{"+"\"place_id\":\""+postRequestPlaceSearch()+"\"}") 
+    body("{"+"\"place_id\":\""+jsonPath.get("place_id")+"\"}") 
     .when().post("https://maps.googleapis.com/maps/api/place/delete/json").andReturn().then().body("status",equalTo("OK"));
 
   }
