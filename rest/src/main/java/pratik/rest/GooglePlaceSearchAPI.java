@@ -67,6 +67,11 @@ public class GooglePlaceSearchAPI {
     body("{"+"\"place_id\":\""+jsonPath.get("place_id")+"\"}") 
     .when().post("https://maps.googleapis.com/maps/api/place/delete/json").andReturn().then().body("status",equalTo("OK"));
 
+    given().
+    queryParam("key", "AIzaSyBD13yiw9fOHTS5jto3tkiuorfYmzZAO6I").
+    body("{"+"\"place_id\":\""+jsonPath.get("place_id")+"\"}") 
+    .when().post("https://maps.googleapis.com/maps/api/place/delete/json").andReturn().then().body("status",equalTo("NOT_FOUND"));
+
   }
 
 }
