@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="3" passed="3">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="3794" started-at="2017-08-27T07:36:31Z" finished-at="2017-08-27T07:36:35Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="3794" started-at="2017-08-27T07:36:31Z" finished-at="2017-08-27T07:36:35Z">
+      <class name="pratik.rest.GoogleRestAPI">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:pratik.rest.GoogleRestAPI@36d4b5c]" name="setUp" is-config="true" duration-ms="25" started-at="2017-08-27T00:36:31Z" finished-at="2017-08-27T00:36:31Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="deleteRequest()[pri:0, instance:pratik.rest.GoogleRestAPI@36d4b5c]" name="deleteRequest" duration-ms="2868" started-at="2017-08-27T00:36:31Z" finished-at="2017-08-27T00:36:34Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- deleteRequest -->
+        <test-method status="PASS" signature="getRequestTest()[pri:0, instance:pratik.rest.GoogleRestAPI@36d4b5c]" name="getRequestTest" duration-ms="645" started-at="2017-08-27T00:36:34Z" finished-at="2017-08-27T00:36:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getRequestTest -->
+        <test-method status="PASS" signature="postRequest()[pri:0, instance:pratik.rest.GoogleRestAPI@36d4b5c]" name="postRequest" duration-ms="206" started-at="2017-08-27T00:36:35Z" finished-at="2017-08-27T00:36:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- postRequest -->
+      </class> <!-- pratik.rest.GoogleRestAPI -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
